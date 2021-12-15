@@ -1,30 +1,31 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { Redirect } from "react-router-dom";
 import Appbar from "../components/appbar";
 import { Box } from "@mui/system";
-// import bookService from "../service/bookService";
-// import { setCartBooks } from "../actions/bookActions";
-// import { useDispatch } from "react-redux";
+import cartService from "../service/cartService";
+import { setCartBooks } from "../actions/productActions";
+import { useDispatch } from "react-redux";
+import Cart from "../components/cart";
 
 const CartPage = () => {
   const token = localStorage.getItem("token");
-//   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-//   useEffect(() => {
-//     fetchitem();
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, []);
+  useEffect(() => {
+    fetchitem();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-//   const fetchitem = () => {
-//     bookService
-//       .getCartBooks()
-//       .then((res) => {
-//         dispatch(setCartBooks(res.data));
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   };
+  const fetchitem = () => {
+    cartService
+      .getCart()
+      .then((res) => {
+        dispatch(setCartBooks(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   if (token == null) {
     return <>{<Redirect to="/login" />}</>;
   } else {
@@ -32,7 +33,7 @@ const CartPage = () => {
       <Box sx={{ display: "flex" }}>
         <Appbar />
         <Box component="main" className="book-container">
-          {/* <Cart /> */}
+          <Cart></Cart>
         </Box>
       </Box>
     );
