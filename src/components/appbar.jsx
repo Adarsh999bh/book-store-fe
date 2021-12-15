@@ -1,4 +1,4 @@
-// import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import {
   Toolbar,
@@ -12,41 +12,47 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 import "../styles/home.scss";
-// import { useSelector } from "react-redux";
-// import { setFilteredBooks } from "../actions/bookActions";
-// import { useDispatch } from "react-redux";
-import {Link} from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { setFilteredBooks } from "../actions/productActions";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import productService from "../service/productService";
 
 const AppBar = styled(MuiAppBar)(({ theme }) => ({
   backgroundColor: "#A03037",
 }));
 
 const Appbar = () => {
-//   const [search, setSearch] = useState("");
-//   const myBooks = useSelector((state) => state.allBooks.books);
-//   const dispatch = useDispatch();
-//   const handleSearch = (searchValue) => {
-//     setSearch(searchValue);
-//   };
+  const myBooks = useSelector((state) => state.products.allProducts);
+  const dispatch = useDispatch();
 
-//   useEffect(() => {
-//     dispatch(
-//       setFilteredBooks(
-//         myBooks.filter((item) => {
-//           return (
-//             item.title.toLowerCase().includes(search.toLowerCase()) ||
-//             item.author.toLowerCase().includes(search.toLowerCase())
-//           );
-//         })
-//       )
-//     );
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [search, myBooks]);
+  useEffect(() => {
+    dispatch(setFilteredBooks(myBooks));
+  }, [myBooks]);
+
+  const handleSearch = (searchValue) => {
+    if (searchValue.length >= 3) {
+      productService
+        .searchBook({ searchTxt: searchValue })
+        .then((res) => {
+          dispatch(setFilteredBooks(res.data));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      dispatch(setFilteredBooks(myBooks));
+    }
+  };
 
   return (
     <AppBar position="fixed">
       <Toolbar>
-        <IconButton style={{ marginLeft: "5%" }} component={Link} to="/Dashboard">
+        <IconButton
+          style={{ marginLeft: "5%" }}
+          component={Link}
+          to="/Dashboard"
+        >
           <ImportContactsIcon fontSize="large" style={{ color: "white" }} />
         </IconButton>
         <Typography variant="h6" id="book-title">
@@ -56,7 +62,7 @@ const Appbar = () => {
           placeholder="Search…"
           id="search-bar"
           variant="outlined"
-        //   onChange={(e) => handleSearch(e.target.value)}
+          onChange={(e) => handleSearch(e.target.value)}
           style={{ margin: "0px 25% 0px 5%" }}
           size="small"
           fullWidth
@@ -74,7 +80,11 @@ const Appbar = () => {
         <Typography variant="h6" id="cart-title">
           Cart
         </Typography>
-        <IconButton style={{ color: "white", marginRight: "6%" }} component={Link} to="/cart">
+        <IconButton
+          style={{ color: "white", marginRight: "6%" }}
+          component={Link}
+          to="/cart"
+        >
           <ShoppingCartIcon fontSize="large" />
         </IconButton>
       </Toolbar>
