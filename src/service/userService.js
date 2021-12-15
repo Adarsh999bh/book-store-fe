@@ -10,7 +10,7 @@ const register = (data) => {
     },
     data: data,
   };
-  return AxiosHelper.post(reqobj)
+  return AxiosHelper.withBody(reqobj)
     .then((response) => {
       return response;
     })
@@ -28,7 +28,7 @@ const login = (data) => {
     },
     data: data,
   };
-  return AxiosHelper.post(reqobj)
+  return AxiosHelper.withBody(reqobj)
     .then((response) => {
       return response;
     })
@@ -46,7 +46,7 @@ const forgetPassword = (data) => {
     },
     data: data,
   };
-  return AxiosHelper.post(reqobj)
+  return AxiosHelper.withBody(reqobj)
     .then((response) => {
       return response;
     })
@@ -65,7 +65,7 @@ const resetPassword = (data,token) => {
     data: data,
   };
   console.log(reqobj.url);
-  return AxiosHelper.post(reqobj)
+  return AxiosHelper.withBody(reqobj)
     .then((response) => {
       return response;
     })
