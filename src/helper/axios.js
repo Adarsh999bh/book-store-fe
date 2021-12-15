@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const post = (requestObject) => {
+const withBody = (requestObject) => {
   return axios({
     method: requestObject.method,
     url: requestObject.url,
@@ -9,7 +9,7 @@ const post = (requestObject) => {
   });
 };
 
-const get = (requestObject) => {
+const withoutBody = (requestObject) => {
   return axios({
     method: requestObject.method,
     url: requestObject.url,
@@ -18,4 +18,4 @@ const get = (requestObject) => {
 };
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
-export default { post,get};
+export default { withBody,withoutBody};
