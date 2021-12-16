@@ -3,7 +3,6 @@ import {
   Button,
   Grid,
   Typography,
-  TextField,
   Radio,
   RadioGroup,
   FormControlLabel,
@@ -12,11 +11,37 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  TextField,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import addressService from "../service/addressService";
 
-const CustomerAddress = () => {
+import { withStyles } from "@mui/styles"
+
+const InputField = withStyles({
+  root:{
+      "& label.Mui-focused":{
+          color:"#A03037"
+      },
+      "& .MuiOutlinedInput-root":{
+          "& fieldset":{
+              borderColor:"black"
+          },
+          "&:hover fieldset":{
+              borderColor:"#A03037"
+          },
+          "&.Mui-focused fieldset":{
+              borderColor:"#A03037"
+          }
+      }
+  }
+})(TextField)
+
+const CustomerAddress = ({
+  expanded,
+  handleExpanded,
+  handleExpandedSummary,
+}) => {
   let initialUserState = {
     userName: "",
     phNo: "",
@@ -39,21 +64,23 @@ const CustomerAddress = () => {
   }, []);
 
   const fetchitem = () => {
-      addressService.getAddress().then(res=>{
-        if (res.data !== null) {
-            setDetails(res.data);
-          }
-      }).catch(err=>{
-          console.log(err);
-      })
+    addressService.getAddress().then(res => {
+      if (res.data !== null) {
+        setDetails(res.data);
+      }
+    }).catch(err => {
+      console.log(err);
+    })
   };
 
   const handleUpdate = () => {
-      addressService.createAddress(details)
-      .then(res=>{
+    handleExpanded();
+    handleExpandedSummary();
+    addressService.createAddress(details)
+      .then(res => {
 
-      }).catch(err=>{
-          console.log(err);
+      }).catch(err => {
+        console.log(err);
       })
   };
   return (
@@ -63,7 +90,7 @@ const CustomerAddress = () => {
       id="cartContainer"
     >
       <Grid item xs={12}>
-        <Accordion elevation={0}>
+        <Accordion elevation={0} expanded={expanded} onChange={handleExpanded}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -74,7 +101,7 @@ const CustomerAddress = () => {
           <AccordionDetails>
             <Grid item container xs={10} spacing={1.5}>
               <Grid item xs={6}>
-                <TextField
+                <InputField
                   id="name"
                   name="userName"
                   placeholder="Name"
@@ -87,7 +114,7 @@ const CustomerAddress = () => {
                 />
               </Grid>
               <Grid item xs={6}>
-                <TextField
+                <InputField
                   id="phone"
                   placeholder="Phone Number"
                   type="text"
@@ -101,7 +128,7 @@ const CustomerAddress = () => {
               </Grid>
 
               <Grid item xs={6}>
-                <TextField
+                <InputField
                   id="pincode"
                   name="pincode"
                   placeholder="Pincode"
@@ -113,7 +140,7 @@ const CustomerAddress = () => {
                 />
               </Grid>
               <Grid item xs={6}>
-                <TextField
+                <InputField
                   id="locality"
                   name="locality"
                   placeholder="Locality"
@@ -125,7 +152,7 @@ const CustomerAddress = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <InputField
                   id="address"
                   name="address"
                   placeholder="Address"
@@ -137,7 +164,7 @@ const CustomerAddress = () => {
                 />
               </Grid>
               <Grid item xs={6}>
-                <TextField
+                <InputField
                   id="city"
                   name="city"
                   placeholder="City/town"
@@ -150,7 +177,7 @@ const CustomerAddress = () => {
                 />
               </Grid>
               <Grid item xs={6}>
-                <TextField
+                <InputField
                   id="landmark"
                   name="landmark"
                   placeholder="Landmark"
@@ -191,7 +218,7 @@ const CustomerAddress = () => {
               </Grid>
             </Grid>
             <Grid item xs={12} align="right">
-              <Button variant="contained" onClick={handleUpdate}>
+              <Button variant="contained" onClick={handleUpdate} style={{ backgroundColor: "#A03037", color: "white" }}>
                 Continue
               </Button>
             </Grid>

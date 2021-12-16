@@ -1,14 +1,8 @@
-@media screen and (min-width: 0px) and (max-width: 400px) {
+@media screen and (min-width: 0px) and (max-width: 600px) {
   #book-title {
     display: none;
   }
   #cart-title {
-    display: none;
-  }
-  #search-bar {
-    width: 100%;
-  }
-  #search-icon {
     display: none;
   }
 }
@@ -64,12 +58,58 @@
   padding: 1%;
 }
 
-@media screen and (max-width: 500px) {
+#search-bar {
+  height: 40px;
+  width: 430px;
+  border-radius: 5px;
+  border: 0px;
+}
+
+#searchDiv {
+  display: flex;
+  border-radius: 5px;
+  background-color: white;
+  margin: 0px 25% 0px 5%;
+}
+#search-icon {
+  margin-top: 9px;
+  margin-left: 10px;
+  color: grey;
+}
+@media screen and (max-width: 700px) {
   #cartContainer {
     border: 1px solid black;
     width: 90%;
     margin: 1.5% auto 1% auto;
     padding: 1%;
+  }
+  #search-bar {
+    height: 40px;
+    width: 100%;
+    border-radius: 5px;
+    border: 0px;
+  }
+  #searchDiv {
+    display: flex;
+    border-radius: 5px;
+    background-color: white;
+    margin: 0px 10% 0px 4%;
+  }
+  table {
+    display: none;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+  #search-bar {
+    height: 40px;
+    width: 100%;
+    border: 0px;
+  }
+  #searchDiv {
+    display: flex;
+    border-radius: 5px;
+    background-color: white;
+    margin: 0px 18% 0px 5%;
   }
 }
 
@@ -77,4 +117,43 @@
   display: flex;
   justify-content: center;
   margin-top: 2%;
+}
+
+.image {
+  position: relative;
+  text-align: center;
+}
+.centered {
+  position: absolute;
+  top: 60%;
+  left: 50.5%;
+  transform: translate(-50%, -50%);
+}
+
+table {
+  margin-top: 10px;
+  width: 50%;
+}
+th {
+  background-color: #fafafa;
+}
+
+#cartPageBox,
+#orderPageBox,
+#dashboardBox {
+  display: flex;
+  background-color: white;
+  height: 100%;
+  min-height: 100vh;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+}
+
+input:focus {
+  outline: none;
 }

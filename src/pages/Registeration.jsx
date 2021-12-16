@@ -11,15 +11,37 @@ import {
 } from "../config/formValidation";
 import {
   Grid,
-  TextField,
   Typography,
   Button,
   Paper,
   FormControlLabel,
   Checkbox,
   Alert,
+  TextField,
 } from "@mui/material";
 import "../styles/form.scss";
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+
+import { withStyles } from "@mui/styles"
+
+const InputField = withStyles({
+  root:{
+      "& label.Mui-focused":{
+          color:"#A03037"
+      },
+      "& .MuiOutlinedInput-root":{
+          "& fieldset":{
+              borderColor:"#A03037"
+          },
+          "&:hover fieldset":{
+              borderColor:"#A03037"
+          },
+          "&.Mui-focused fieldset":{
+              borderColor:"#A03037"
+          }
+      }
+  }
+})(TextField)
 
 const Registeration = () => {
   const initialUserState = {
@@ -119,12 +141,12 @@ const Registeration = () => {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="h6" align="left">
+              <Typography variant="h6" align="left" style={{color:"#a03037"}}>
                 Create your Book Store Account
               </Typography>
             </Grid>
             <Grid item xs={6}>
-              <TextField
+              <InputField
                 id="first-name"
                 label="First Name"
                 variant="outlined"
@@ -137,7 +159,7 @@ const Registeration = () => {
               />
             </Grid>
             <Grid item xs={6}>
-              <TextField
+              <InputField
                 id="last-name"
                 label="Last Name"
                 variant="outlined"
@@ -150,7 +172,7 @@ const Registeration = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
+              <InputField
                 id="email"
                 label="Email"
                 variant="outlined"
@@ -167,7 +189,7 @@ const Registeration = () => {
               />
             </Grid>
             <Grid item xs={6}>
-              <TextField
+              <InputField
                 id="password"
                 label="password"
                 variant="outlined"
@@ -185,7 +207,7 @@ const Registeration = () => {
               />
             </Grid>
             <Grid item xs={6}>
-              <TextField
+              <InputField
                 id="confirm"
                 label="confirm"
                 variant="outlined"
@@ -217,7 +239,7 @@ const Registeration = () => {
             </Grid>
           </Grid>
           <Grid item container xs={4}>
-            <img alt=" " src={registerImage} />
+          <LocalLibraryIcon id="book-logo" />
           </Grid>
         </Grid>
         <Grid item xs={12} style={{ paddingTop: "15px" }}>

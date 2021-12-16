@@ -10,6 +10,26 @@ import {
   Alert,
 } from "@mui/material";
 import "../styles/form.scss";
+import { withStyles } from "@mui/styles"
+
+const InputField = withStyles({
+  root:{
+      "& label.Mui-focused":{
+          color:"#A03037"
+      },
+      "& .MuiOutlinedInput-root":{
+          "& fieldset":{
+              borderColor:"#A03037"
+          },
+          "&:hover fieldset":{
+              borderColor:"#A03037"
+          },
+          "&.Mui-focused fieldset":{
+              borderColor:"#A03037"
+          }
+      }
+  }
+})(TextField)
 const ForgetPassWord = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -56,13 +76,13 @@ const ForgetPassWord = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h5">Find your Book Store password</Typography>
+            <Typography variant="h5" style={{color:"#a03037"}}>Find your Book Store password</Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="p">Enter your Book Store email</Typography>
           </Grid>
           <Grid item xs={12}>
-            <TextField
+            <InputField
               id="email"
               label="Email eg:name@gmail.com"
               variant="outlined"
@@ -79,7 +99,7 @@ const ForgetPassWord = () => {
             </Button>
           </Grid>
           <Grid item xs={6} align="right">
-            <Button variant="contained" type="submit">
+            <Button variant="contained" type="submit" style={{ backgroundColor: "#A03037", color: "white" }}>
               Submit
             </Button>
           </Grid>

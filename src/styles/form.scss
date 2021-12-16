@@ -2,31 +2,25 @@
 #sign-in-btn {
   text-transform: none;
   font-weight: bold;
+  color: #a03037;
+}
+#submit {
+  background-color: #a03037;
+  color: white;
 }
 
 #login-form,
 #registeration-form,
 #resetpassword-form,
 #forgotpassword-form {
-  width: 40%;
-  margin: 2% auto;
+  width: 45%;
+  margin: 5% auto;
 }
 
 .multicolortext {
-  background-image: linear-gradient(
-    to left,
-    red,
-    green,
-    blue,
-    orange,
-    red,
-    blue
-  );
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #a03037;
   font-weight: bold;
+  letter-spacing: 0.8px;
 }
 
 @media screen and (max-width: 400px) {
@@ -34,17 +28,39 @@
   #registeration-form,
   #resetpassword-form,
   #forgotpassword-form {
-    width: 100%;
-    margin: 2% auto;
+    width: 90%;
+    margin: 10% auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  #book-logo {
+    display: none;
   }
 }
 
-@media screen and (min-width: 400px) and (max-width: 900px) {
+@media screen and (min-width: 400px) and (max-width: 700px) {
+  #login-form,
+  #registeration-form,
+  #resetpassword-form,
+  #forgotpassword-form {
+    width: 90%;
+    margin: 10% auto;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1000px) {
   #login-form,
   #registeration-form,
   #resetpassword-form,
   #forgotpassword-form {
     width: 70%;
-    margin: 2% auto;
+    margin: 5% auto;
   }
+}
+
+#book-logo {
+  width: 90%;
+  height: 400px;
+  margin-left: 15px;
+  color: #a03037;
 }

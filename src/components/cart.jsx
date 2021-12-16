@@ -19,7 +19,16 @@ const Cart = () => {
     let total = 0;
     let numberOfBooks = 0;
     const [success, setSuccess] = useState(false);
+    const [expanded, setExpanded] = React.useState(false);
+    const [expandedSummary, setExpandedSummary] = React.useState(false);
     const myBooks = useSelector((state) => state.products.cartProducts);
+    const handleExpanded = () => {
+        setExpanded((prev) => !prev);
+    };
+
+    const handleExpandedSummary = () => {
+        setExpandedSummary((prev) => !prev);
+    };
 
     const handleCheckout = () => {
         let data = {
@@ -31,10 +40,10 @@ const Cart = () => {
             .then((res) => {
                 if (res.data) {
                     sessionStorage.setItem("orderId", res.data.orderId);
-                    myBooks.map(item=>{
-                        cartService.deleteCart({productId:item._id}).then(resp=>{
+                    myBooks.map(item => {
+                        cartService.deleteCart({ productId: item._id }).then(resp => {
                             //nothing here
-                        }).catch(err=>{
+                        }).catch(err => {
                             console.log(err);
                         })
                     })
@@ -68,17 +77,24 @@ const Cart = () => {
                     })}
 
                     <Grid item xs={12} align="right">
-                        <Button variant="contained">Place order</Button>
+                        <Button variant="contained" onClick={handleExpanded} style={{ backgroundColor: "#A03037", color: "white" }}>Place order</Button>
                     </Grid>
                 </Grid>
-                <CustomerAddress />
+                <CustomerAddress
+                    expanded={expanded}
+                    handleExpanded={handleExpanded}
+                    handleExpandedSummary={handleExpandedSummary}
+                />
                 <Grid
                     item
                     container
                     id="cartContainer"
                 >
                     <Grid item xs={12}>
-                        <Accordion elevation={0}>
+                        <Accordion elevation={0}
+                            expanded={expandedSummary}
+                            onChange={handleExpandedSummary}
+                        >
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
@@ -98,7 +114,7 @@ const Cart = () => {
                                     <Typography>Total Price : {total}</Typography>
                                 </Grid>
                                 <Grid item xs={12} align="right">
-                                    <Button variant="contained" onClick={handleCheckout}>checkout</Button>
+                                    <Button variant="contained" onClick={handleCheckout} style={{ backgroundColor: "#A03037", color: "white" }}>checkout</Button>
                                 </Grid>
                             </AccordionDetails>
                         </Accordion>

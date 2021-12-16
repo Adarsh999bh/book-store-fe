@@ -25,7 +25,7 @@ const Order = () => {
       <Grid item xs={12}>
         <p style={{ margin: "0px" }}>hurray!!! your order is confirmed</p>
         <p style={{ margin: "0px" }}>
-          the order id is {orderID} save the order id for
+          the order id is #{orderID} save the order id for
         </p>
         <p style={{ margin: "0px" }}>further communication..</p>
       </Grid>
@@ -50,7 +50,7 @@ const Order = () => {
       </Grid>
       <Grid item xs={12} style={{ margin: "20px auto" }}>
         <Button
-          style={{ backgroundColor: "#3371B5", color: "white" }}
+          style={{ backgroundColor: "#A03037", color: "white" }}
           component={Link}
           to="/dashboard"
         >
