@@ -6,6 +6,7 @@ import ForgetPassword from "./pages/ForgetPassword";
 import ResetPassWord from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
 import CartPage from "./pages/CartPage";
+import OrderPage from "./pages/orderPage";
 const Routes = () => {
   return (
     <Router>
@@ -15,6 +16,7 @@ const Routes = () => {
       <Route path="/reset/:token" component={ResetPassWord} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/cart" component={CartPage} />
+      <Route path="/order" component={OrderPage} />
     </Router>
   );
 };

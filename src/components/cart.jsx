@@ -11,12 +11,43 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CartCard from "./cartCard";
 import CustomerAddress from "./customerAddress";
+import orderService from "../service/orderService";
+import cartService from "../service/cartService";
+import { Redirect } from "react-router-dom";
+import { useState } from "react";
 const Cart = () => {
     let total = 0;
     let numberOfBooks = 0;
+    const [success, setSuccess] = useState(false);
     const myBooks = useSelector((state) => state.products.cartProducts);
+
+    const handleCheckout = () => {
+        let data = {
+            productList: [myBooks.map((item) => item._id)],
+            totalPrice: total,
+        };
+        orderService
+            .createOrder(data)
+            .then((res) => {
+                if (res.data) {
+                    sessionStorage.setItem("orderId", res.data.orderId);
+                    myBooks.map(item=>{
+                        cartService.deleteCart({productId:item._id}).then(resp=>{
+                            //nothing here
+                        }).catch(err=>{
+                            console.log(err);
+                        })
+                    })
+                    setSuccess(true);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     if (myBooks.length == 0) {
-        return <h2 style={{marginTop:"100px"}}> Oopsie.! You have not added anything in your cart.</h2>
+        return <h2 style={{ marginTop: "100px" }}> Oopsie.! You have not added anything in your cart.</h2>
     }
     else {
         return (
@@ -67,12 +98,13 @@ const Cart = () => {
                                     <Typography>Total Price : {total}</Typography>
                                 </Grid>
                                 <Grid item xs={12} align="right">
-                                    <Button variant="contained">checkout</Button>
+                                    <Button variant="contained" onClick={handleCheckout}>checkout</Button>
                                 </Grid>
                             </AccordionDetails>
                         </Accordion>
                     </Grid>
                 </Grid>
+                {success && <Redirect to="/order" />}
             </Grid>
         );
     }
