@@ -6,8 +6,10 @@ import { useDispatch } from "react-redux";
 import productService from "../service/productService";
 import { useEffect } from "react";
 import Book from "../components/book";
-import { setBooks } from "../actions/productActions";
+import {setFilteredBooks,setBooks } from "../actions/productActions";
+import { useSelector } from "react-redux";
 const Dashboard = () => {
+  const sortIndex=useSelector((state) => state.products.sortIndex);
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   useEffect(() => {
@@ -16,7 +18,7 @@ const Dashboard = () => {
 
   const fetchitem = () => {
     productService
-      .getBooks(1)
+      .getBooks(1,sortIndex)
       .then((res) => {
         dispatch(setBooks(res.data));
       })

@@ -40,3 +40,16 @@ export const decreaseProductQuantity = (productId) => {
         data: productId,
     };
 };
+
+export const setSort = (sortIndex) => {
+    return {
+        type: ActionTypes.SET_SORT,
+        data: sortIndex,
+    };
+};
+export const setPgno = (pgNo) => {
+    return {
+        type: ActionTypes.SET_PGNO,
+        data: pgNo,
+    };
+};

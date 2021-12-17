@@ -1,14 +1,14 @@
 import AxiosHelper from "../helper/axios";
 const url = require('../config/local');
 
-const getBooks = (index) => {
+const getBooks = (index,sortIndex) => {
     let token = localStorage.getItem("token");
     let reqobj = {
         method: "get",
-        url: url.baseURL + "/product/get-products/" + index,
+        url: url.baseURL + "/product/get-products/" + index+"/"+sortIndex,
         headers: {
             authorization: `bearer ${token}`,
-        },
+        }
     };
     return AxiosHelper.withoutBody(reqobj)
         .then((response) => {

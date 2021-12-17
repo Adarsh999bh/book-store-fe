@@ -3,7 +3,9 @@ import { ActionTypes } from "../constants/actionTypes";
 const initialState = {
     allProducts: [],
     filteredProducts: [],
-    cartProducts: []
+    cartProducts: [],
+    sortIndex: 0,
+    pageNumber: 1,
 }
 
 export const productReducer = (state = initialState, payload) => {
@@ -38,7 +40,13 @@ export const productReducer = (state = initialState, payload) => {
                 return !(item._id == payload.data);
             })
             console.log(filteredProducts);
-            return {...state, cartProducts: filteredProducts}
+            return { ...state, cartProducts: filteredProducts }
+
+        case ActionTypes.SET_SORT:
+            return { ...state, sortIndex: payload.data }
+
+        case ActionTypes.SET_PGNO:
+            return { ...state, pageNumber: payload.data }
 
         default:
             return state;
