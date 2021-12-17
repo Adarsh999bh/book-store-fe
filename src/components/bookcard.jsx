@@ -66,7 +66,6 @@ const BookCard = ({ item }) => {
         >
           <Button
             onClick={handleCart}
-            fullWidth="true"
             style={
               !cart && wishlist
                 ? { background: "#3371B5", color: "white" }
@@ -83,7 +82,6 @@ const BookCard = ({ item }) => {
                 ? { border: "1px solid black", color: "black" }
                 : { display: "none" }
             }
-            fullWidth="true"
             onClick={handleWishlist}
           >
             Wishlist
