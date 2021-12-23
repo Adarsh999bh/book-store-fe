@@ -7,4 +7,4 @@
  * @since           : 8-Dec-2021
  * 
  **************************************************************************/
-export const baseURL = "https://book-store-bek.herokuapp.com/"
+export const baseURL = "https://book-store-bek.herokuapp.com"
