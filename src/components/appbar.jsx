@@ -1,3 +1,12 @@
+/* ************************************************************************
+ * Execution        : 1. default node  cmd> node  index.js              
+ * @descrition      : set up the react server 
+ * @file            : server.js
+ * @author          : Adarsh Bhandary
+ * @version         : 1.0
+ * @since           : 8-Dec-2021
+ * 
+ **************************************************************************/
 import React, { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import {
@@ -16,6 +25,9 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import productService from "../service/productService";
 
+/**
+ * creating styled app bar
+ */
 const AppBar = styled(MuiAppBar)(({ theme }) => ({
   backgroundColor: "#A03037",
 }));
@@ -24,10 +36,17 @@ const Appbar = () => {
   const myBooks = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
 
+  /**
+   * @description setting filtered books
+   */
   useEffect(() => {
     dispatch(setFilteredBooks(myBooks));
   }, [myBooks]);
 
+  /**
+   * @description handles search operation
+   * @param {String} searchValue 
+   */
   const handleSearch = (searchValue) => {
     if (searchValue.length >= 3) {
       dispatch(setSort(0))

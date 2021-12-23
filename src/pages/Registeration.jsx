@@ -1,5 +1,13 @@
+/* ************************************************************************
+ * Execution        : 1. default node  cmd> node  index.js              
+ * @descrition      : set up the react server 
+ * @file            : server.js
+ * @author          : Adarsh Bhandary
+ * @version         : 1.0
+ * @since           : 8-Dec-2021
+ * 
+ **************************************************************************/
 import React, { useState } from "react";
-import registerImage from "../assets/account.svg";
 import { Link, Redirect } from "react-router-dom";
 import userService from "../service/userService";
 

@@ -1,3 +1,12 @@
+/* ************************************************************************
+ * Execution        : 1. default node  cmd> node  index.js              
+ * @descrition      : set up the react server 
+ * @file            : server.js
+ * @author          : Adarsh Bhandary
+ * @version         : 1.0
+ * @since           : 8-Dec-2021
+ * 
+ **************************************************************************/
 import React, { useState } from "react";
 import userService from "../service/userService";
 import { Link } from "react-router-dom";
